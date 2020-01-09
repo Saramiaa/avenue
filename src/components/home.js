@@ -12,7 +12,7 @@ class Home extends React.Component {
     this.state = {
       articles: [],
       min: 0,
-      max:15
+      max:16
 
     }
   }
