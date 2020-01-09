@@ -1,7 +1,7 @@
 import {ADD_ONE} from '../actions/action-types';
 
 const initialState = {
-	article: 0
+	article: []
 }
 
 export default function articleReducer(state = initialState, action) {

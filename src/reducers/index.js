@@ -3,7 +3,7 @@ import ArticleReducer from './articleReducer';
 
 
 const rootReducer = combineReducers({
-    article: ArticleReducer
+    number: ArticleReducer
 });
 
 export default rootReducer;
