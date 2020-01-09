@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {getArticle} from '../api/avenue'
 import {Link} from 'react-router-dom';
-import {addOne} from '../actions'
+import {AddProduct} from '../actions'
 
 
 
@@ -18,6 +18,7 @@ class Home extends React.Component {
   }
 
   componentDidMount(){
+
     this.setState(
       ()=>{
         getArticle()
@@ -35,6 +36,13 @@ class Home extends React.Component {
           <h3>{article.title}</h3>
           <img  src={article.thumbnailUrl} className="productImage"/>
           <div className="add-basket">
+          <button
+         onClick={()=>{
+          this.onClickAddProduct(article);
+         }}
+        >
+          Ajouter le produit
+        </button>
             <i className="fas fa-plus-circle"></i>
           </div>
         </article>)
@@ -53,6 +61,23 @@ class Home extends React.Component {
     if(this.state.max < 4999) {
       this.setState({min: this.state.min + 16, max: this.state.max  +16 })
     }
+  }
+
+  onClickAddProduct(newProduct) {
+  newProduct.quantity = 1;
+
+  let products = this.props.product.basket
+
+
+  let same = products.findIndex((product) => product.id === newProduct.id)
+  if (same === -1) {
+    products = [...products, newProduct];
+  } else {
+    products[same].quantity += newProduct.quantity;
+  }
+
+  this.props.AddProduct(products);
+
   }
 
   render() {
@@ -83,12 +108,12 @@ class Home extends React.Component {
 // récupérer et stocker donné
 const mapStateToProps = (store) => {
   return {
-    articles: store.article
+    product: store.basket
   }
 }
 
 const mapDispatchToProps = {
-  addOne
+  AddProduct
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

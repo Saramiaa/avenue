@@ -1,17 +1,16 @@
-import {ADD_ONE} from '../actions/action-types';
+import {ADD_PRODUCT} from '../actions/action-types';
 
 const initialState = {
-	article: []
+	basket: []
 }
 
-export default function articleReducer(state = initialState, action) {
+export default function numberReducer(state = initialState, action) {
 	switch(action.type) {
 
-		case ADD_ONE:
-			console.log('action récupéré reducer', action)
+		case ADD_PRODUCT:
 			return {
-				// ...state,
-				// number: action.payload
+				...state,
+				basket: action.payload
 			}
 
 		default:

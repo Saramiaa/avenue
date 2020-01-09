@@ -1,10 +1,13 @@
-import {ADD_ONE} from './action-types';
+import {ADD_PRODUCT} from './action-types'
 
-export const addOne = (newArticle)=>{
+export function AddProduct(products) {
+
     return function(dispatch) {
         dispatch({
-			type: ADD_ONE,
-			payload: newArticle
-		});
+				type: ADD_PRODUCT,
+				payload: products
+			});
+
+
     }
 }
