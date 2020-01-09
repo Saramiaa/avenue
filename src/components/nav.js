@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
 
 class Nav extends React.Component {
 	constructor(props){
@@ -8,15 +9,25 @@ class Nav extends React.Component {
 
 	render(){
 		return (
-			<div className="menu">
+			<nav className="menu">
 
 					<Link className="nav-title" to="/">Home</Link>
 				<Link className="nav-title" to="/panier">panier</Link>
+				<span>{this.props.product.basket.length}</span>
 
-
-			</div>
+			</nav>
 		)
 	}
 }
 
-export default Nav
+const mapStateToProps = (store) => {
+  return {
+  	product: store.basket
+  }
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)
